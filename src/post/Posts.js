@@ -28,30 +28,37 @@ class Posts extends Component {
           const posterId = post.postedBy ? `/user/${post.postedBy._id}` : "";
           const posterName = post.postedBy ? post.postedBy.name : "Unknown";
           return (
-            <div className="card col-md-4" key={i}>
-              <div className="card-body">
-                <img
-                  src={`${process.env.REACT_APP_API_URL}/post/photo/${post._id}`}
-                  onError={i => (i.target.src = `${DefaultPost}`)}
-                  alt={post.title}
-                  className="img-thumbnail mb-3"
-                  style={{ height: "200px", width: "100%" }}
-                />
-                <h5 className="card-title">{post.title}</h5>
-                <p className="card-text">{post.body.substring(0, 100)}</p>
-                <br />
-                <p className="font-italic mark">
-                  Posted by: <Link to={`${posterId}`}>{posterName}</Link> on{" "}
-                  {new Date(post.created).toDateString()}
-                </p>
-                <Link
-                  className="btn btn-raised btn-sm btn-primary"
-                  to={`/post/${post._id}`}
-                >
-                  Read More
-                </Link>
+            <>
+              <div className="row col-md-12" key={i}>
+                <div className="col-md-8">
+                  <h5 className="card-title">{post.title}</h5>
+                  <p className="card-text">{post.body.substring(0, 100)}</p>
+                  <br />
+                  <p className="card-text text-muted">
+                    Posted by: <Link to={`${posterId}`}>{posterName}</Link> on{" "}
+                    {new Date(post.created).toDateString()}
+                  </p>
+                  <Link
+                    className="btn btn-sm btn-primary"
+                    to={`/post/${post._id}`}
+                  >
+                    Read More
+                  </Link>
+                </div>
+                <div className="col-md-4 mr-0">
+                  <img
+                    src={`${process.env.REACT_APP_API_URL}/post/photo/${post._id}`}
+                    onError={i => (i.target.src = `${DefaultPost}`)}
+                    alt={post.title}
+                    className="img-thumbnail "
+                    style={{ height: "200px", width: "100%" }}
+                  />
+                </div>
               </div>
-            </div>
+              <div className="col-md-12 mb-2 mt-2">
+                <hr />
+              </div>
+            </>
           );
         })}
       </div>
