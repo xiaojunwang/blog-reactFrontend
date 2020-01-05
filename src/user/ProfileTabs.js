@@ -72,7 +72,6 @@ class ProfileTabs extends Component {
                 </div>
               </div>
             ))}
-            <hr />
           </div>
         </div>
       </div>

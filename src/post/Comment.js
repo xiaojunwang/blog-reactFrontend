@@ -7,7 +7,8 @@ import DefaultProfile from "../images/avatar.jpeg";
 class Comment extends Component {
   state = {
     text: "",
-    error: ""
+    error: "",
+    showAlert: ""
   };
 
   handleChange = event => {
@@ -83,21 +84,6 @@ class Comment extends Component {
 
     return (
       <div>
-        <h2 className="mt-5 mb-5">Leave a comment</h2>
-
-        <form onSubmit={this.addComment}>
-          <div className="form-group">
-            <input
-              className="form-control"
-              type="text"
-              value={this.state.text}
-              onChange={this.handleChange}
-              placeholder="Leave a comment..."
-            />
-            <button className="btn btn-raised btn-success mt-2">Post</button>
-          </div>
-        </form>
-
         <div
           className="alert alert-danger"
           style={{ display: error ? "" : "none" }}
@@ -110,7 +96,7 @@ class Comment extends Component {
           <hr />
           {comments.map((comment, i) => (
             <div key={i}>
-              <div>
+              <div className="mb-4">
                 <Link to={`/user/${comment.postedBy._id}`}>
                   <img
                     style={{ borderRadius: "50%", border: "1px solid black" }}
@@ -124,7 +110,7 @@ class Comment extends Component {
                 </Link>
                 <div>
                   <p className="lead">{comment.text}</p>
-                  <p className="font-italic mark">
+                  <p className="text-muted">
                     Posted by:{" "}
                     <Link to={`/user/${comment.postedBy._id}`}>
                       {comment.postedBy.name}
@@ -139,6 +125,7 @@ class Comment extends Component {
                                 this.deleteConfirmed(comment);
                               }}
                               className="text-danger float-right mr-1"
+                              style={{ cursor: "pointer" }}
                             >
                               Delete Post
                             </span>
@@ -151,6 +138,25 @@ class Comment extends Component {
             </div>
           ))}
         </div>
+        <h3 className="mt-5 mb-4 ml-4">Leave a comment</h3>
+
+        <form onSubmit={this.addComment}>
+          <div className="row ml-2">
+            <div className="form-group col-md-10">
+              <textarea
+                class="form-control"
+                id="commentInput"
+                value={this.state.text}
+                onChange={this.handleChange}
+                rows="2"
+                placeholder="What is on your mind..."
+              ></textarea>
+            </div>
+            <div className="col-md-2">
+              <button className="btn btn-raised btn-success mt-2">Post</button>
+            </div>
+          </div>
+        </form>
       </div>
     );
   }

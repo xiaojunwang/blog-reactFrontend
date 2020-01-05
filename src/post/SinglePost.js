@@ -95,30 +95,39 @@ class SinglePost extends Component {
           style={{ height: "300px", width: "100%", objectFit: "cover" }}
         />
 
-        {like ? (
-          <h3 onClick={this.likeToggle}>
-            <i
-              className="fa fa-thumbs-up text-success bg-dark mr-2"
-              style={{ padding: "10px", borderRadius: "50%" }}
-            ></i>
-            {likes} Like
-          </h3>
-        ) : (
-          <h3 onClick={this.likeToggle}>
-            <i
-              className="fa fa-thumbs-up text-warning bg-dark mr-2"
-              style={{ padding: "10px", borderRadius: "50%" }}
-            ></i>
-            {likes} Like
-          </h3>
-        )}
-
         <p className="card-text">{post.body}</p>
         <br />
-        <p className="font-italic mark">
+        <p className="text-muted">
           Posted by: <Link to={`${posterId}`}>{posterName}</Link> on{" "}
           {new Date(post.created).toDateString()}
         </p>
+
+        {like ? (
+          <h5
+            className="float-right"
+            onClick={this.likeToggle}
+            style={{ cursor: "pointer" }}
+          >
+            <i
+              className="fa fa-thumbs-up text-success mr-2"
+              style={{ padding: "10px", borderRadius: "50%" }}
+            ></i>
+            {likes} Like
+          </h5>
+        ) : (
+          <h5
+            className="float-right"
+            onClick={this.likeToggle}
+            style={{ cursor: "pointer" }}
+          >
+            <i
+              className="fa fa-thumbs-up text-warning mr-2"
+              style={{ padding: "10px", borderRadius: "50%" }}
+            ></i>
+            {likes} Like
+          </h5>
+        )}
+
         <div className="d-inine-block">
           <Link className="btn btn-raised btn-sm btn-primary mr-5" to={`/`}>
             Back to posts

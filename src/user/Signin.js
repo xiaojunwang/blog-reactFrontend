@@ -94,10 +94,7 @@ class Signin extends Component {
 
         {/* Reset password */}
         <p>
-          <Link to="/forgot-password" className="text-danger">
-            {" "}
-            Forgot Password
-          </Link>
+          <Link to="/forgot-password"> Forgot Password</Link>
         </p>
       </div>
     );

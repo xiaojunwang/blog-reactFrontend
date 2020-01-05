@@ -20,14 +20,7 @@ const Menu = ({ history }) => (
             Home
           </Link>
         </li>
-        <li className="nav-item">
-          <Link
-            to={`/post/create`}
-            className={isActive(history, `/post/create`)}
-          >
-            Create Post
-          </Link>
-        </li>
+
         {isAuthenticated() && (
           <>
             <li className="nav-item">
@@ -42,6 +35,14 @@ const Menu = ({ history }) => (
         )}
       </ul>
       <ul class="navbar-nav">
+        <li className="nav-item">
+          <Link
+            to={`/post/create`}
+            className={isActive(history, `/post/create`)}
+          >
+            Create Post
+          </Link>
+        </li>
         {!isAuthenticated() && (
           // react fragments
           <>

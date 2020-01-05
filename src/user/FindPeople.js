@@ -47,9 +47,12 @@ class FindPeople extends Component {
   renderUsers = users => (
     <div className="row">
       {users.map((user, i) => (
-        <div className="card col-md-4" key={i}>
+        <div
+          className="card col-md-3 ml-1 mr-1 mt-1 mb-1"
+          style={{ width: "18rem;" }}
+        >
           <img
-            className="img-thumbnail"
+            className="card-img-top"
             style={{ height: "220px", width: "auto" }}
             src={`${process.env.REACT_APP_API_URL}/user/photo/${user._id}`}
             onError={i => (i.target.src = `${DefaultProfile}`)}
@@ -57,20 +60,22 @@ class FindPeople extends Component {
           ></img>
           <div className="card-body">
             <h5 className="card-title">{user.name}</h5>
-            <p className="card-text">{user.email}</p>
-            <Link
-              className="btn btn-raised btn-sm btn-primary"
-              to={`/user/${user._id}`}
-            >
+            <p className="card-text">{`Joined ${new Date(
+              user.created
+            ).toDateString()}`}</p>
+          </div>
+
+          <div className="card-body">
+            <Link className="card-link" to={`/user/${user._id}`}>
               View Profile
             </Link>
 
-            <button
+            <Link
               onClick={() => this.clickFollow(user, i)}
-              className="btn btn-raised btn-info float-right btn-sm"
+              className="card-link float-right"
             >
               Follow
-            </button>
+            </Link>
           </div>
         </div>
       ))}
